@@ -1,43 +1,37 @@
 import sqlite3
 from datetime import datetime
- 
-def create_table():
-    connection = sqlite3.connect('expenditure.db')
-    cursor = connection.cursor()
- 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS expenditures (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date TEXT,
-            group_name TEXT,
-            person TEXT,
-            expenditure REAL
-        )
-    ''')
- 
-    connection.commit()
-    connection.close()
- 
-def insert_data(date, group_name, person, expenditure):
-    connection = sqlite3.connect('expenditure.db')
-    cursor = connection.cursor()
- 
-    cursor.execute('''
-        INSERT INTO expenditures (date, group_name, person, expenditure)
-        VALUES (?, ?, ?, ?)
-    ''', (date, group_name, person, expenditure))
- 
-    connection.commit()
-    connection.close()
 
-from transaction_operations import create_table, insert_data
-from datetime import datetime
- 
-# ... (other functions remain the same)
- 
+class ExpenditureManager:
+    def __init__(self, database_name='expenditure.db'):
+        self.connection = sqlite3.connect(database_name)
+        self.cursor = self.connection.cursor()
+        self.create_table()
+
+    def create_table(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS expenditures (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                date TEXT,
+                group_name TEXT,
+                person TEXT,
+                expenditure REAL
+            )
+        ''')
+        self.connection.commit()
+
+    def insert_data(self, date, group_name, person, expenditure):
+        self.cursor.execute('''
+            INSERT INTO expenditures (date, group_name, person, expenditure)
+            VALUES (?, ?, ?, ?)
+        ''', (date, group_name, person, expenditure))
+        self.connection.commit()
+
+    def close_connection(self):
+        self.connection.close()
+
 def main():
-    create_table()
- 
+    expenditure_manager = ExpenditureManager()
+
     try:
         while True:
             date = input("Enter the date (YYYY-MM-DD) or 'q' to quit: ")
@@ -52,11 +46,12 @@ def main():
             for i in range(num_people):
                 person = input(f"Enter the name of person {i+1}: ")
                 expenditure = float(input(f"Enter the expenditure for {person}: "))
-                insert_data(date, group_name, person, expenditure)
- 
-        
+                expenditure_manager.insert_data(date, group_name, person, expenditure)
+
     except ValueError:
         print("Invalid input. Please enter valid numbers.")
- 
+    finally:
+        expenditure_manager.close_connection()
+
 if __name__ == "__main__":
     main()
