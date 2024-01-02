@@ -1,5 +1,15 @@
 {% extends 'web/base.html' %}
 {% block body %}
-    <h2>Welcome</h2>
-        <span>{{ member.firstname }}</span>
+    <h2>Welcome <span>{{ member.firstname }}</span></h2>
+    <br \>
+    <form method="GET" action="{% url 'addgroup' %}">
+        <button class=" btn-home-container btn btn-home-style"> Create Group</button><br \>
+    </form>
+    <br \>
+    <button class="btn-home-container btn btn-home-style"> View History</button><br \>
+    <br \>
+    <button class="btn-home-container btn btn-home-style"> About</button><br \>
+    <br \>
+    <button class="btn-home-container btn btn-home-style"> Help</button><br \>
+    <br \>
 {% endblock %}

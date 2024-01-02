@@ -28,6 +28,10 @@ def home(request):
         else:
             context = {'msg': 'Session Expired'}
             return render(request, 'web/login.html', context)
+        
+def addgroup(request):
+    return render(request, 'web/add-grp.html')
+
 
 
 
