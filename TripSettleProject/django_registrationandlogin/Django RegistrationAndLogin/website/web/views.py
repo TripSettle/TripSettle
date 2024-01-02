@@ -14,6 +14,7 @@ def login(request):
     return render(request, 'web/login.html')
 
 def home(request):
+    member = None
     if request.method == 'POST':
         if Member.objects.filter(username=request.POST['username'], password=request.POST['password']).exists():
             member = Member.objects.get(username=request.POST['username'], password=request.POST['password'])
@@ -21,4 +22,12 @@ def home(request):
         else:
             context = {'msg': 'Invalid username or password'}
             return render(request, 'web/login.html', context)
+    elif request.method == 'GET':
+        if member is not None:
+            return render(request, 'web/home.html', {'member': member})
+        else:
+            context = {'msg': 'Session Expired'}
+            return render(request, 'web/login.html', context)
+
+
 
