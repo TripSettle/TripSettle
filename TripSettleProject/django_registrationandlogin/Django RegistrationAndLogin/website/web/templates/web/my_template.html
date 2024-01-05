@@ -1,0 +1,7 @@
+<!-- templates/myapp/my_template.html -->
+
+<form method="post" action="{% url 'addgroup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>

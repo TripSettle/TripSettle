@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Member
+
+
+from django.shortcuts import render
+from .forms import MyModelForm
 # Create your views here.
 
 def index(request):
@@ -28,9 +32,33 @@ def home(request):
         else:
             context = {'msg': 'Session Expired'}
             return render(request, 'web/login.html', context)
+
+# myapp/views.py
+
+
+def my_view(request):
+    if request.method == 'POST':
+        form = MyModelForm(request.POST)
+        if form.is_valid():
+            # Handle form submission if needed
+            pass
+    else:
+        form = MyModelForm()
+
+    return render(request, 'web/my_template.html', {'form': form})
+
         
 def addgroup(request):
-    return render(request, 'web/add-grp.html')
+    if request.method == 'POST':
+        form = MyModelForm(request.POST)
+        if form.is_valid():
+            # Handle form submission if needed
+            pass
+    else:
+        form = MyModelForm()
+
+    return render(request, 'web/my_template.html', {'form': form})
+
 
 
 
