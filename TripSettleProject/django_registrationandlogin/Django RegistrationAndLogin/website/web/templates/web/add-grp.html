@@ -1,6 +1,47 @@
-{% extends 'web/base.html' %}
-{% block body %}
-    <h2>Welcome to Create Group <span> !!!</span></h2>
-    <br \>
-    <br \>
-{% endblock %}
+<!-- templates/myapp/my_view.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My View</title>
+</head>
+<body>
+
+  <h2>My Form</h2>
+
+  <form method="post" action="{% url 'addgroup' %}">
+    {% csrf_token %}
+
+    <!-- Editable Field -->
+    <div>
+       <div class="form-group">
+            <label for="groupname">GroupName</label>
+            <input type="text" name="groupname" class="form-control" required="required">
+        </div>
+    </div>
+    
+    <div>
+        <div class="form-group">
+            <label for="person">Person</label>
+            <input type="text" name="person" class="form-control" required="required">
+        </div>
+    </div>
+
+
+    <!-- Static Field -->
+    <div>
+        <div class="form-group">
+            <label for="expenditure">Expenditure</label>
+            <input type="text" name="expenditure" class="form-control" required="required">
+        </div>
+    </div>
+
+    
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>

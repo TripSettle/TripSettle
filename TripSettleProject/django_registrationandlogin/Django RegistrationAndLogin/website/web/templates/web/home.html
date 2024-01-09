@@ -1,15 +1,25 @@
 {% extends 'web/base.html' %}
 {% block body %}
-    <h2>Welcome <span>{{ member.firstname }}</span></h2>
+    <h2>Welcome <span>{{ username }}</span></h2>
     <br \>
     <form method="GET" action="{% url 'addgroup' %}">
         <button class=" btn-home-container btn btn-home-style"> Create Group</button><br \>
     </form>
     <br \>
-    <button class="btn-home-container btn btn-home-style"> View History</button><br \>
+    <form method="GET" action="{% url 'viewgroups' %}">
+        <button class=" btn-home-container btn btn-home-style"> View Groups</button><br \>
+    </form>
     <br \>
-    <button class="btn-home-container btn btn-home-style"> About</button><br \>
+    <form method="GET" action="{% url 'viewhistory' %}">
+        <button class="btn-home-container btn btn-home-style"> View History</button><br \>
+    </form>
     <br \>
-    <button class="btn-home-container btn btn-home-style"> Help</button><br \>
+    <form method="GET" action="{% url 'about' %}">
+        <button class="btn-home-container btn btn-home-style"> About</button><br \>
+    </form>
+    <br \>
+    <form method="GET" action="{% url 'help' %}">
+        <button class="btn-home-container btn btn-home-style"> Help</button><br \>
+    </form>
     <br \>
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from .models import Member
+from .models import Member,MyModel
+
 # Create your views here.
 
 def index(request):
@@ -13,25 +14,50 @@ def index(request):
 def login(request):
     return render(request, 'web/login.html')
 
+
 def home(request):
     member = None
     if request.method == 'POST':
         if Member.objects.filter(username=request.POST['username'], password=request.POST['password']).exists():
             member = Member.objects.get(username=request.POST['username'], password=request.POST['password'])
-            return render(request, 'web/home.html', {'member': member})
+            request.session['username'] = member.username
+            return render(request, 'web/home.html', {'username': member.username})
         else:
             context = {'msg': 'Invalid username or password'}
             return render(request, 'web/login.html', context)
     elif request.method == 'GET':
-        if member is not None:
-            return render(request, 'web/home.html', {'member': member})
+        username = request.session.get('username', None)
+        if username is not None:
+            return render(request, 'web/home.html', {'username': username})
         else:
             context = {'msg': 'Session Expired'}
             return render(request, 'web/login.html', context)
         
 def addgroup(request):
-    return render(request, 'web/add-grp.html')
+    if request.method == 'POST':
+        form = MyModel(date='08/01/2024', group_name=request.POST['groupname'],  person=request.POST['person'], expenditure=request.POST['expenditure'])
+        form.save()
+        username = request.session.get('username', None)
+        return render(request,'web/home.html',{'username': username})
+    else:
+        return render(request, 'web/add-grp.html')
+    
+def viewgroups(request):
+    queryset = MyModel.objects.all()
+    # MyModel.objects.all().delete()
+    return render(request, 'web/viewgroups.html', {'data': queryset})
 
+def addtransaction(request):
+    return render(request, 'web/addtransactions.html')
+    
+def viewhistory(request):
+    return render(request, 'web/viewhistory.html')
+    
+def about(request):
+    return render(request, 'web/about.html')
+
+def help(request):
+    return render(request, 'web/help.html')
 
 
 

@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% block body %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.date }}</td>
+            <td>{{item.group_name}}</td>
+            <td>{{item.person}}</td>
+            <td>{{item.expenditure}}</td>
+            <form method="GET" action="{% url 'addtransaction' %}">
+                <td><button class=" btn-home-container btn btn-home-style">View</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+{% endblock %}
