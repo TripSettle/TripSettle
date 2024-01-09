@@ -1,0 +1,42 @@
+<!-- templates/myapp/my_view.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My View</title>
+</head>
+<body>
+
+  <h2>My Form</h2>
+
+  <form method="post" action="{% url 'addgroup' %}">
+    {% csrf_token %}
+
+    <!-- Editable Field -->
+    <div>
+      {{ form.GroupName.label_tag }}
+      {{ form.GroupName }}
+      {{ form.GroupName.errors }}
+    </div>
+
+    <!-- Static Field -->
+    <div>
+      {{ form.TotalMembers.label_tag }}
+      {{ form.TotalMembers }}
+      {{ form.TotalMembers.errors }}
+    </div>
+
+    <div>
+      {{ form.Name.label_tag }}
+      {{ form.Name }}
+      {{ form.Name.errors }}
+    </div>
+
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
