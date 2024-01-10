@@ -1,14 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-<<<<<<< HEAD
 from .models import Member,MyModel
 
-=======
-from .models import Member
-
-
-from django.shortcuts import render
-from .forms import MyModelForm
->>>>>>> e3ab29cac93c0fc1344c972cf683e66c522efb93
 # Create your views here.
 
 def index(request):
@@ -40,25 +32,9 @@ def home(request):
         else:
             context = {'msg': 'Session Expired'}
             return render(request, 'web/login.html', context)
-
-# myapp/views.py
-
-
-def my_view(request):
-    if request.method == 'POST':
-        form = MyModelForm(request.POST)
-        if form.is_valid():
-            # Handle form submission if needed
-            pass
-    else:
-        form = MyModelForm()
-
-    return render(request, 'web/my_template.html', {'form': form})
-
         
 def addgroup(request):
     if request.method == 'POST':
-<<<<<<< HEAD
         form = MyModel(date='08/01/2024', group_name=request.POST['groupname'],  person=request.POST['person'], expenditure=request.POST['expenditure'])
         form.save()
         username = request.session.get('username', None)
@@ -79,17 +55,6 @@ def viewhistory(request):
     
 def about(request):
     return render(request, 'web/about.html')
-=======
-        form = MyModelForm(request.POST)
-        if form.is_valid():
-            # Handle form submission if needed
-            pass
-    else:
-        form = MyModelForm()
-
-    return render(request, 'web/my_template.html', {'form': form})
-
->>>>>>> e3ab29cac93c0fc1344c972cf683e66c522efb93
 
 def help(request):
     return render(request, 'web/help.html')
