@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Member,MyModel
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -62,5 +63,16 @@ def about(request):
 def help(request):
     return render(request, 'web/help.html')
 
+def sendemail(request):
+    if request.method == 'GET':
+        subject = 'Subject of the Email'
+        message = 'Body of the Email'
+        from_email = 'yourmail@gmail.com'
+        recipient_list = ['mymail@gmail.com']
+        send_mail(subject, message, from_email, recipient_list)
 
+        username = request.session.get('username', None)
+        return render(request,'web/home.html',{'username': username})
+    else:
+        return render(request, 'web/settleup.html')
 
