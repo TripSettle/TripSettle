@@ -49,6 +49,9 @@ def viewgroups(request):
 
 def addtransaction(request):
     return render(request, 'web/addtransactions.html')
+
+def settleup(request):
+    return render(request, 'web/settleup.html')
     
 def viewhistory(request):
     return render(request, 'web/viewhistory.html')
