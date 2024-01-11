@@ -4,12 +4,24 @@
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'web/css/bootstrap.css' %}" />
+        <style>
+            /* Style the button */
+            .right-aligned-button {
+                float: right; /* Align to the right using float */
+                margin-right: 10px; /* Optional margin for space */
+            }
+        </style>
+              
     </head>
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <a class="navbar-brand" href="https://TripSettle.com">TripSettle</a>
+            <a href="{% url 'home' %}"  >
+                <img src="{% static 'web/css/home.png' %}" alt="Home" style="width: 30px; height: 30px;" class="right-aligned-button">
+            </a>  
         </div>
+        
     </nav>
     <div class="col-md-3"></div>
     <div class="col-md-6 well">
@@ -18,5 +30,6 @@
         {% block body %}
         {% endblock %}
     </div>
+    
 </body>
 </html>
