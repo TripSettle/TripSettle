@@ -8,7 +8,7 @@
             /* Style the button */
             .right-aligned-button {
                 float: right; /* Align to the right using float */
-                margin-right: 10px; /* Optional margin for space */
+                margin-right: 20px; /* Optional margin for space */
             }
         </style>
               
@@ -19,7 +19,9 @@
             <a class="navbar-brand" href="https://TripSettle.com">TripSettle</a>
             <a href="{% url 'home' %}"  >
                 <img src="{% static 'web/css/home.png' %}" alt="Home" style="width: 30px; height: 30px;" class="right-aligned-button">
-            </a>  
+            </a> 
+            <a></a>
+            <a href="{% url 'login' %}" style="width: 30px; height: 30px;" class="right-aligned-button">Logout</a>
         </div>
         
     </nav>
