@@ -9,6 +9,7 @@ urlpatterns = [
     path('viewgroups/', views.viewgroups, name='viewgroups'),
     path('viewhistory/', views.viewhistory, name='viewhistory'),
     path('addtransaction/', views.addtransaction, name='addtransaction'),
+    path('filltransaction/', views.filltransaction, name='filltransaction'),
     path('settleup/', views.settleup, name='settleup'),
     path('sendemail/', views.sendemail, name='sendemail'),
     path('about/', views.about, name='about'),

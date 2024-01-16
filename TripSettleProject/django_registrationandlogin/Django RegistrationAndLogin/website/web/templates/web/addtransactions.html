@@ -1,7 +1,9 @@
 {% extends 'web/base.html' %}
 {% block body %}
 <br \>
+<form method="GET" action="{% url 'filltransaction' %}">
 <button class=" btn-home-container btn btn-home-style"> Add Transaction</button><br \>
+</form>
 <br \>
 <br \>
 <form method="GET" action="{% url 'settleup' %}">

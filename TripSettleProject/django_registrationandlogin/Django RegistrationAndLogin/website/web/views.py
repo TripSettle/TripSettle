@@ -76,3 +76,6 @@ def sendemail(request):
     else:
         return render(request, 'web/settleup.html')
 
+def filltransaction(request):
+    li=["hi","hello","welcome"]
+    return render(request, 'web/filltransaction.html',{"mylist":li})

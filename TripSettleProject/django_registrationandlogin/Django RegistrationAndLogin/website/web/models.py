@@ -27,3 +27,17 @@ class MyModel(models.Model):
 
     def _str_(self):
         return f"{self.date} - {self.group_name} - {self.person}"
+    
+class AddTransaction(models.Model):
+    transname = models.CharField(max_length=30)
+    amtspent = models.CharField(max_length=10)
+    personName = models.CharField(max_length=255,editable=False)
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
+    persons = models.CharField(max_length=25,choices=GENDER_CHOICES)
+
+    def _str_(self):
+        return f"{self.date} - {self.group_name} - {self.person}"
