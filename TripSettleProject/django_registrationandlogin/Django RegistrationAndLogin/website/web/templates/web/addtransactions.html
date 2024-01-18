@@ -1,5 +1,24 @@
 {% extends 'web/base.html' %}
 {% block body %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Transname</th>
+            <th>AmountSpent</th>
+            <th>PersonNames</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.transname }}</td>
+            <td>{{item.amtspent}}</td>
+            <td>{{item.personName}}</td>
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
 <br \>
 <form method="GET" action="{% url 'filltransaction' %}">
 <button class=" btn-home-container btn btn-home-style"> Add Transaction</button><br \>

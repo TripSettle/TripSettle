@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from .models import Member,MyModel
+from .models import Member,MyModel,AddTransaction
 from django.core.mail import send_mail
 
 # Create your views here.
@@ -49,7 +49,8 @@ def viewgroups(request):
     return render(request, 'web/viewgroups.html', {'data': queryset})
 
 def addtransaction(request):
-    return render(request, 'web/addtransactions.html')
+    queryset = AddTransaction.objects.all()
+    return render(request, 'web/addtransactions.html',{'data':queryset})
 
 def settleup(request):
     return render(request, 'web/settleup.html')
@@ -77,5 +78,11 @@ def sendemail(request):
         return render(request, 'web/settleup.html')
 
 def filltransaction(request):
-    li=["hi","hello","welcome"]
+    li=["dhaya","hari","John"]
+    if request.method == 'POST':
+        form = AddTransaction(transname=request.POST['transname'], amtspent=request.POST['amtspent'],  personName=request.POST['personName'])
+        form.save()
+        queryset = AddTransaction.objects.all()
+        return render(request,'web/addtransactions.html',{'data':queryset})
     return render(request, 'web/filltransaction.html',{"mylist":li})
+
