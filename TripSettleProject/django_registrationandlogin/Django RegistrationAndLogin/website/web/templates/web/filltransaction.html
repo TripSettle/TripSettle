@@ -1,6 +1,15 @@
 {% extends 'web/base.html' %}
 {% block body %}
-<label for="id_group">Person Names:</label>
+<div class="form-group">
+    <label for="personspent">person who spent</label>
+        <select name="spent" id="personspent" required size="5">
+            {% for choice in mylist %}
+                <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="updateSpent()">Add person</button>
+</div>
+<label for="id_group">Persons Involved</label>
     <select name="group" id="id_group" required size="5">
         {% for choice in mylist %}
             <option value="{{ choice }}">{{ choice }}</option>
@@ -8,8 +17,21 @@
     </select>
     <button onclick="updatefield()">Add</button>
     <br \>
+    
+   
 <form method="post" action="{% url 'filltransaction' %}">
     {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="personSpt" class="form-control" required="required" id="personSpt" readonly>
+    </div>
+    <br \>
+    <div>
+        <div class="form-group">
+            <label for="personName">person involved</label>
+            <input type="text" name="personName" class="form-control" required="required" id="personName" readonly>
+        </div>
+    </div>
+    <br \>
 <div>
     <div class="form-group">
          <label for="transname">Transaction Name</label>
@@ -24,11 +46,9 @@
      </div>
  </div>
 
- <div>
-    <div class="form-group">
-        <label for="personName">person Names</label>
-        <input type="text" name="personName" class="form-control" required="required" id="personName" readonly>
-    </div>
+
+<div>
+    
 </div>
 <button type="submit">Submit</button>
 </form>
@@ -51,6 +71,12 @@
             document.getElementById("personName").value=selectedval;
         }
         dropdown.remove(dropdown.selectedIndex);
+    }
+    function updateSpent()
+    {
+        var dropdown = document.getElementById("personspent");
+        var selectedval = dropdown.options[dropdown.selectedIndex].value
+        document.getElementById("personSpt").value=selectedval;
     }
 </script>
 

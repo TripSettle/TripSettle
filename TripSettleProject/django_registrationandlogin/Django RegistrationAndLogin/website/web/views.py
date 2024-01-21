@@ -80,9 +80,11 @@ def sendemail(request):
 def filltransaction(request):
     li=["dhaya","hari","John"]
     if request.method == 'POST':
-        form = AddTransaction(transname=request.POST['transname'], amtspent=request.POST['amtspent'],  personName=request.POST['personName'])
+        form = AddTransaction(transname=request.POST['transname'], amtspent=request.POST['amtspent'],  personName=request.POST['personName'],personspent=request.POST['personSpt'])
         form.save()
+        # print(request.POST)
         queryset = AddTransaction.objects.all()
+        # AddTransaction.objects.all().delete()
         return render(request,'web/addtransactions.html',{'data':queryset})
     return render(request, 'web/filltransaction.html',{"mylist":li})
 

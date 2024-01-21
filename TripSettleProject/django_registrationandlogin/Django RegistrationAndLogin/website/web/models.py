@@ -32,6 +32,7 @@ class AddTransaction(models.Model):
     transname = models.CharField(max_length=30)
     amtspent = models.CharField(max_length=10)
     personName = models.CharField(max_length=255)
+    personspent = models.CharField(max_length=20)
 
     def _str_(self):
         return f"{self.personName} - {self.transname} - {self.amtspent}"
